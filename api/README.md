@@ -13,6 +13,12 @@ docker-compose up --detach
 ./mvnw compile quarkus:dev
 ```
 
+If it's the first time you use docker, it might be necessary to add your user to docker group.
+```shell script
+sudo gpasswd -a $USER docker
+newgrp docker
+```
+
 To stop the application and its dependencies, type `ctrl+c` in the bash session and run `docker-compose down`.
 
 ## Packaging and running the application
