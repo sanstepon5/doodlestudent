@@ -13,6 +13,8 @@ services:
     image: etherpad/etherpad
     ports:
       - "9001:9001"
+    environment:
+      AUTHENTICATION_METHOD: "apikey"
     volumes:
       - ./APIKEY.txt:/opt/etherpad-lite/APIKEY.txt
   mail:
