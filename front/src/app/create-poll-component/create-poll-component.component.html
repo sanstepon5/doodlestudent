@@ -1,5 +1,8 @@
 <div class="Container">
+  <a href="/">
     <img src="assets/flat_logo.png" alt="Logo Simba" height="50px" [ngStyle]="{ 'marginBottom': '1rem' }"/>
+  </a>
+
 
     <div class="card">
         <p-toast></p-toast>
@@ -74,6 +77,9 @@
             <input #mail="ngModel" id="ics" type="text"  pInputText (change)="getICS()" [(ngModel)]="ics">
           </span>
         </div>
+
+        <input type="file" id="icsFileInput" (change)="onFileSelected($event)" accept=".ics" />
+        <button (click)="importICSFile()">Import ICS File</button>
       </div>
 
             <full-calendar #calendar [options]="options"></full-calendar>

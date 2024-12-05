@@ -10,6 +10,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
+import ICAL from "ical.js";
+
 /*FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
@@ -46,6 +48,8 @@ export class CreatePollComponentComponent implements OnInit {
   hasics = false;
   loadics = false;
   ics: string;
+
+  selectedICSFile: File | null = null;
 
   @ViewChild('calendar') set content(content: FullCalendarComponent) {
     if (content) { // initially setter gets called with undefined
@@ -305,6 +309,7 @@ export class CreatePollComponentComponent implements OnInit {
 
   getICS(): void {
     this.loadics = true;
+    console.log(this.slugid, this.ics)
     this.pollService.getICS(this.slugid, this.ics).subscribe(res => {
       this.loadics = false;
 
@@ -383,5 +388,60 @@ export class CreatePollComponentComponent implements OnInit {
     }
     );
 
+  }
+
+
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedICSFile = input.files[0];
+    }
+  }
+
+  importICSFile(): void {
+    if (!this.selectedICSFile) {
+      alert('Please select an ICS file first.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e: ProgressEvent<FileReader>) => {
+      const fileContent = e.target?.result as string;
+      this.parseICS(fileContent);
+    };
+    reader.readAsText(this.selectedICSFile);
+  }
+
+  parseICS(fileContent: string): void {
+    try {
+      var jcalData = ICAL.parse(fileContent.trim());
+      var comp = new ICAL.Component(jcalData);
+      var eventComps = comp.getAllSubcomponents("vevent");
+
+      eventComps.forEach(vevent => {
+        const event = new ICAL.Event(vevent);
+        const calendarEvent = {
+          title: event.summary,
+          start: event.startDate.toJSDate(),
+          end: event.endDate?.toJSDate(),
+          id: this.getUniqueId(8),
+          backgroundColor: 'blue',
+          extendedProps: {
+            fromics: true,
+          },
+        };
+
+        const calendarApi = this.calendarComponent.getApi();
+        calendarApi.addEvent(calendarEvent);
+        this.allevents.push(calendarEvent);
+        this.eventsfromics.push(calendarEvent);
+      });
+
+      alert('ICS file imported successfully.');
+    } catch (error) {
+      console.error('Error parsing ICS file:', error);
+      alert('An error occurred while importing the ICS file.');
+    }
   }
 }
