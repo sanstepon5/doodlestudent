@@ -9,7 +9,7 @@ import { CalendarOptions, EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
-
+import {PopUpService} from './pop-up.service';
 import ICAL from "ical.js";
 
 /*FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -83,7 +83,8 @@ export class CreatePollComponentComponent implements OnInit {
   submitted = false;
 
 
-  constructor(public messageService: MessageService, public pollService: PollService, private actRoute: ActivatedRoute) { }
+  constructor(public messageService: MessageService, public pollService: PollService, private actRoute: ActivatedRoute
+             ,private popupService: PopUpService) { }
 
   ngOnInit(): void {
     this.poll.pollChoices = [];
@@ -160,19 +161,15 @@ export class CreatePollComponentComponent implements OnInit {
         evt.end = info.event.end;
       },
       eventClick: (info) => {
-        const evt = this.events.filter(e => e.id === info.event.id).pop();
-        if (evt != null){
-        const index = this.events.indexOf(evt);
-        if (index > -1) {
-          this.events.splice(index, 1);
+        const evt = this.events.find(e => e.id === info.event.id);
+        if (evt) {
+          this.popupService.showPopup(info.event); // Emit the event for the popup
+          // Only remove the event if necessary
+          // const index = this.events.indexOf(evt);
+          // if (index > -1) this.events.splice(index, 1);
+          // const index1 = this.allevents.indexOf(evt);
+          // if (index1 > -1) this.allevents.splice(index1, 1);
         }
-        const index1 = this.allevents.indexOf(evt);
-        if (index1 > -1) {
-          this.allevents.splice(index1, 1);
-        }
-        info.event.remove();
-      }
-
       },
       validRange: {
         start: Date.now()
@@ -245,7 +242,7 @@ export class CreatePollComponentComponent implements OnInit {
       });
     } else {
 
-      const toKeep: PollChoice[] = [];
+      const toKeep: PollChoice[] = []
       this.events.filter(c => c.extendedProps != null && c.extendedProps.choiceid != null).forEach(e => {
         toKeep.push(this.poll.pollChoices.filter(c1 => c1.id === e.extendedProps.choiceid)[0]);
       });

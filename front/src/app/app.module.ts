@@ -40,6 +40,7 @@ import { Selecteddate4userPipePipe } from './selecteddate4user-pipe.pipe';
 import { ModalPollClosComponent } from './modal-poll-clos/modal-poll-clos.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ShowCommentsComponent } from './show-comments/show-comments.component';
+import { PopUpCalendarComponent } from './pop-up-calendar/pop-up-calendar.component';
 
 registerLocaleData(localeFr, 'fr');
 @NgModule({
@@ -55,7 +56,8 @@ registerLocaleData(localeFr, 'fr');
     Selecteddate4userPipePipe,
     ModalPollClosComponent,
     TopBarComponent,
-    ShowCommentsComponent
+    ShowCommentsComponent,
+    PopUpCalendarComponent
   ],
   imports: [
     BrowserModule,
