@@ -1,0 +1,18 @@
+<!-- pop-up-calendar.component.html -->
+
+<div class="fc-event-popup" *ngIf="isVisible"
+     [ngStyle]="{ top: popupPosition.top, left: popupPosition.left }"
+     (mousedown)="startDrag($event)"
+     (mousemove)="dragPopup($event)"
+     (mouseup)="stopDrag()"
+     (mouseleave)="stopDrag()">
+  <div class="popup-header">
+    <h3>{{ event?.title }}</h3>
+    <button class="close-button" (click)="closePopup()">&times;</button>
+  </div>
+  <div class="popup-details">
+    <p><strong>Start:</strong> {{ event?.start | date: 'short' }}</p>
+    <p><strong>End:</strong> {{ event?.end | date: 'short' }}</p>
+    <!-- Additional details can be added here -->
+  </div>
+</div>
