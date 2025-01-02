@@ -15,12 +15,20 @@ Dans le cadre d'un TP de Web Engineering, notre objectif était d'ajouter des fo
 - La possibilité d'ajouter une description à chaque horaire de la réunion séparement et la visualiser
 
 # Lancer le projet
+Télécharger le projet:
+```
+git clone git@github.com:sanstepon5/doodlestudent.git
+cd doodlestudent
+```
+
 Pour démarrer le front:
 ```
 cd front
 npm install
 npm run start
 ```
+Ensuite ouvrir la page http://localhost:4200/ dans un navigateur.
+
 
 Pour démarrer le backend:
 ```
