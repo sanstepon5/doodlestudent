@@ -397,6 +397,7 @@ export class CreatePollComponentComponent implements OnInit {
     if (input.files && input.files.length > 0) {
       this.selectedICSFile = input.files[0];
     }
+    // this.importICSFile()
   }
 
   importICSFile(): void {

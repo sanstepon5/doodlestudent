@@ -78,8 +78,13 @@
           </span>
         </div>
 
-        <input type="file" id="icsFileInput" (change)="onFileSelected($event)" accept=".ics" />
-        <button (click)="importICSFile()">Import ICS File</button>
+        <div class="p-field">
+          <label for="icsFileInput">Importer un fichier ICS</label>
+          <div class="ics-file-container">
+            <input type="file" id="icsFileInput" (change)="onFileSelected($event)" accept=".ics" />
+            <button pButton label="Importer" icon="pi pi-upload" class="p-button-outlined" (click)="importICSFile()"></button>
+          </div>
+        </div>
       </div>
 
             <full-calendar #calendar [options]="options"></full-calendar>
