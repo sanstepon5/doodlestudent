@@ -161,16 +161,18 @@ export class CreatePollComponentComponent implements OnInit {
         evt.end = info.event.end;
       },
       eventClick: (info) => {
-        const evt = this.events.find(e => e.id === info.event.id);
-        if (evt) {
-          this.popupService.showPopup(info.event); // Emit the event for the popup
-          // Only remove the event if necessary
-          // const index = this.events.indexOf(evt);
-          // if (index > -1) this.events.splice(index, 1);
-          // const index1 = this.allevents.indexOf(evt);
-          // if (index1 > -1) this.allevents.splice(index1, 1);
-        }
-      },
+        const eventApi = info.event; // This is the EventApi object which includes all necessary internal properties
+
+        // Ensure the description is included in the extendedProps
+        eventApi.setExtendedProp('description', eventApi.extendedProps.description || ''); // Add description if it exists
+
+        // Pass the actual EventApi to the popup service
+        this.popupService.showPopup(eventApi); // Emit the EventApi instance for the popup
+
+      }
+
+
+      ,
       validRange: {
         start: Date.now()
       }
@@ -242,7 +244,7 @@ export class CreatePollComponentComponent implements OnInit {
       });
     } else {
 
-      const toKeep: PollChoice[] = []
+      const toKeep: PollChoice[] = [];
       this.events.filter(c => c.extendedProps != null && c.extendedProps.choiceid != null).forEach(e => {
         toKeep.push(this.poll.pollChoices.filter(c1 => c1.id === e.extendedProps.choiceid)[0]);
       });

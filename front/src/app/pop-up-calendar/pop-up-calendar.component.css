@@ -1,15 +1,13 @@
-/* pop-up-calendar.component.css */
-.fc-event-popup {
-  position: fixed; /* Fixed position on the screen */
-  background: #1d4ed8; /* Blue background */
-  color: white; /* White text */
+.popup {
+  position: absolute;
+  background-color: #007bff;
+  color: #fff;
   border-radius: 8px;
-  padding: 15px;
-  z-index: 1050;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  cursor: move; /* Show move cursor when hovering over the popup */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: move;
+  width: 300px;
+  z-index: 1000;
 }
 
 .popup-header {
@@ -17,35 +15,30 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  border-bottom: 2px solid #ffffff; /* White border under header */
-  padding-bottom: 5px;
 }
 
-.popup-header h3 {
-  margin: 0;
-  font-size: 16px;
+.popup-content textarea {
+  width: 100%;
+  height: 80px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  color: #333;
 }
 
-.close-button {
+.popup-content textarea:focus {
+  outline: none;
+}
+
+button {
   background: none;
   border: none;
-  font-size: 18px;
-  font-weight: bold;
   color: white;
+  font-size: 16px;
   cursor: pointer;
-  transition: color 0.2s;
 }
 
-.close-button:hover {
-  color: #ffb3b3; /* Light red on hover */
-}
-
-.popup-details p {
-  margin: 5px 0;
-  line-height: 1.5;
-  font-size: 13px;
-}
-
-.popup-details strong {
-  color: white; /* White for detail labels */
+button:hover {
+  color: #ff5f5f;
 }

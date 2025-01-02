@@ -1,18 +1,25 @@
-<!-- pop-up-calendar.component.html -->
-
-<div class="fc-event-popup" *ngIf="isVisible"
-     [ngStyle]="{ top: popupPosition.top, left: popupPosition.left }"
-     (mousedown)="startDrag($event)"
-     (mousemove)="dragPopup($event)"
-     (mouseup)="stopDrag()"
-     (mouseleave)="stopDrag()">
+<div
+  class="popup"
+  *ngFor="let popup of popups; let i = index"
+  [style.top]="popup.position.top"
+  [style.left]="popup.position.left"
+  (mousedown)="startDrag($event, i)"
+  (mousemove)="dragPopup($event, i)"
+  (mouseup)="stopDrag(i)"
+>
   <div class="popup-header">
-    <h3>{{ event?.title }}</h3>
-    <button class="close-button" (click)="closePopup()">&times;</button>
+    <span>{{ popup.event.title }}</span>
+    <button class="close-button" (click)="closePopup(i)">&times;</button>
   </div>
-  <div class="popup-details">
-    <p><strong>Start:</strong> {{ event?.start | date: 'short' }}</p>
-    <p><strong>End:</strong> {{ event?.end | date: 'short' }}</p>
-    <!-- Additional details can be added here -->
+  <div class="popup-body">
+    <p><strong>Title:</strong> {{ popup.event.title }}</p>
+    <p><strong>Start:</strong> {{ popup.event.start | date: 'shortDate' }} at {{ popup.event.start | date: 'shortTime' }}</p>
+    <p><strong>End:</strong> {{ popup.event.end | date: 'shortDate' }} at {{ popup.event.end | date: 'shortTime' }}</p>
+    <p><strong>Description:</strong></p>
+    <textarea
+      [(ngModel)]="popup.description"
+      (blur)="saveDescription(i, popup.description)"
+      placeholder="Add a description..."
+    ></textarea>
   </div>
 </div>
