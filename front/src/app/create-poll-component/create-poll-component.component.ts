@@ -391,14 +391,15 @@ export class CreatePollComponentComponent implements OnInit {
 
 
 
+  /*Sauvegarde le fichier selectionné par l'utilisateur*/
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedICSFile = input.files[0];
     }
-    // this.importICSFile()
   }
 
+  /*Ajoute le contenu du fichier au calendrier*/
   importICSFile(): void {
     if (!this.selectedICSFile) {
       alert('Please select an ICS file first.');
@@ -413,11 +414,12 @@ export class CreatePollComponentComponent implements OnInit {
     reader.readAsText(this.selectedICSFile);
   }
 
+  /*Rempli le calendrier à partir du fichier*/
   parseICS(fileContent: string): void {
     try {
-      var jcalData = ICAL.parse(fileContent.trim());
-      var comp = new ICAL.Component(jcalData);
-      var eventComps = comp.getAllSubcomponents("vevent");
+      const jcalData = ICAL.parse(fileContent.trim());
+      const comp = new ICAL.Component(jcalData);
+      const eventComps = comp.getAllSubcomponents('vevent');
 
       eventComps.forEach(vevent => {
         const event = new ICAL.Event(vevent);

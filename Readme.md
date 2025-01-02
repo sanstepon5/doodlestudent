@@ -1,15 +1,36 @@
-# Remote meetings planning
+# Auteurs
+Stepan Tyurin, Yvan Douis - M1 Informatique IL
 
-This project is used in a course on the *ops* part at the [University of Rennes](https://www.univ-rennes1.fr/), France. It is a kind of doodle clone developed in so-called "native cloud" technologies in order to allow students to work on a continuous deployment chain in a containerized environment. Among the feature, the application automatically initializes a pad for the meeting and a chat room for the meeting participants.
+2024-2025
 
-- The [back](https://github.com/barais/doodlestudent/tree/main/api) is developed using the [quarkus.io](https://quarkus.io/) framework. 
-- The [front](https://github.com/barais/doodlestudent/tree/main/front) is developed in [angular](https://angular.io/) using the [primeng](https://www.primefaces.org/primeng/)  angular UI component library and the [fullcalendar](https://fullcalendar.io/) graphical component.
+# Projet Doodle
+Ceci est une fork de lu projet Doodle d'Olivier Barais qui permet initialisialer de planifier des réunions avec un calendrier
+et générer des salons de discussions. Le front de l'application est dévéloppé en Angular et le back en Java avec Quarkus.
 
-A demo of the application is available [here](https://doodle.diverse-team.fr/).
+Dans le cadre d'un TP de Web Engineering, notre objectif était d'ajouter des fonctionnalitées à un projet existant
+(dans notre cas le projet Doodle).
 
-Three videos (in french) are available. They present:
-- the [main application feature](https://drive.google.com/file/d/1GQbdgq2CHcddTlcoHqM5Zc8Dw5o_eeLg/preview), 
-- its [architecture](https://drive.google.com/file/d/1l5UAsU5_q-oshwEW6edZ4UvQjN3-tzwi/preview) 
-- and a [short code review](https://drive.google.com/file/d/1jxYNfJdtd4r_pDbOthra360ei8Z17tX_/preview) .
+# Fonctionnalitées ajoutées:
+- La possibilité d'importer un calendrier existant à partir d'un fichier (grâce à ical.js)
+- La possibilité d'ajouter une description à chaque horaire de la réunion séparement et la visualiser
 
-For french native speaker that wants to follow the course. The course web page is available [here](https://hackmd.diverse-team.fr/s/SJqu5DjSD).
+# Lancer le projet
+Pour démarrer le front:
+```
+cd front
+npm install
+npm run start
+```
+
+Pour démarrer le backend:
+```
+cd api
+docker-compose up --detach
+./mvnw compile quarkus:dev
+```
+
+Une méthode alternative si le compile ne marche pas est d'essayer d'ouvrir le dossier api avec IntelliJ Idea. Il doit
+reconnaitre un configuration de run tlcdemoApp, il suffit de la lancer.
+
+Plus de détails peuvent être retrouvés dans les README des dossiers correspondants
+
