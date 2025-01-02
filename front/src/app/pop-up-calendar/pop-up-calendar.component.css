@@ -1,0 +1,51 @@
+/* pop-up-calendar.component.css */
+.fc-event-popup {
+  position: fixed; /* Fixed position on the screen */
+  background: #1d4ed8; /* Blue background */
+  color: white; /* White text */
+  border-radius: 8px;
+  padding: 15px;
+  z-index: 1050;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  cursor: move; /* Show move cursor when hovering over the popup */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ffffff; /* White border under header */
+  padding-bottom: 5px;
+}
+
+.popup-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-button:hover {
+  color: #ffb3b3; /* Light red on hover */
+}
+
+.popup-details p {
+  margin: 5px 0;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.popup-details strong {
+  color: white; /* White for detail labels */
+}
