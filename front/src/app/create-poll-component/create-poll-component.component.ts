@@ -164,7 +164,8 @@ export class CreatePollComponentComponent implements OnInit {
         const eventApi = info.event; // This is the EventApi object which includes all necessary internal properties
 
         // Ensure the description is included in the extendedProps
-        eventApi.setExtendedProp('description', eventApi.extendedProps.description || ''); // Add description if it exists
+        eventApi.setExtendedProp('description', eventApi.extendedProps.description || 'Entrez votre description'); // Add description if it exists
+        eventApi.setProp('title', eventApi.title || 'Nouveau Titre');
 
         // Pass the actual EventApi to the popup service
         this.popupService.showPopup(eventApi); // Emit the EventApi instance for the popup

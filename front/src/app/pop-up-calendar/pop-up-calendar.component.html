@@ -12,7 +12,8 @@
     <button class="close-button" (click)="closePopup(i)">&times;</button>
   </div>
   <div class="popup-body">
-    <p><strong>Titre :</strong> {{ popup.event.title }}</p>
+    <p><strong>Titre :</strong></p>
+    <input type="text" [(ngModel)]="popup.title" (blur)="saveTitle(i, popup.title)" placeholder="Ajouter un titre..." />
     <p><strong>Début :</strong> {{ popup.event.start | date: 'shortDate' }} à {{ popup.event.start | date: 'HH:mm' }}</p>
     <p><strong>Fin :</strong> {{ popup.event.end | date: 'shortDate' }} à {{ popup.event.end | date: 'HH:mm' }}</p>
     <p><strong>Description :</strong></p>
