@@ -3,11 +3,12 @@
   background-color: #007bff;
   color: #fff;
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px; /* Adjusted padding for better spacing */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   cursor: move;
   width: 300px;
   z-index: 1000;
+  font-family: Arial, sans-serif; /* Added font-family for better readability */
 }
 
 .popup-header {
@@ -17,18 +18,27 @@
   margin-bottom: 10px;
 }
 
-.popup-content textarea {
+.popup-body p {
+  margin: 5px 0; /* Added some margin for text spacing */
+}
+
+.popup-body strong {
+  font-weight: bold;
+}
+
+.popup-body textarea {
   width: 100%;
   height: 80px;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   font-size: 14px;
   color: #333;
 }
 
-.popup-content textarea:focus {
+.popup-body textarea:focus {
   outline: none;
+  border-color: #007bff;
 }
 
 button {

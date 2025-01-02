@@ -12,14 +12,14 @@
     <button class="close-button" (click)="closePopup(i)">&times;</button>
   </div>
   <div class="popup-body">
-    <p><strong>Title:</strong> {{ popup.event.title }}</p>
-    <p><strong>Start:</strong> {{ popup.event.start | date: 'shortDate' }} at {{ popup.event.start | date: 'shortTime' }}</p>
-    <p><strong>End:</strong> {{ popup.event.end | date: 'shortDate' }} at {{ popup.event.end | date: 'shortTime' }}</p>
-    <p><strong>Description:</strong></p>
+    <p><strong>Titre :</strong> {{ popup.event.title }}</p>
+    <p><strong>Début :</strong> {{ popup.event.start | date: 'shortDate' }} à {{ popup.event.start | date: 'HH:mm' }}</p>
+    <p><strong>Fin :</strong> {{ popup.event.end | date: 'shortDate' }} à {{ popup.event.end | date: 'HH:mm' }}</p>
+    <p><strong>Description :</strong></p>
     <textarea
       [(ngModel)]="popup.description"
       (blur)="saveDescription(i, popup.description)"
-      placeholder="Add a description..."
+      placeholder="Ajoutez une description..."
     ></textarea>
   </div>
 </div>
